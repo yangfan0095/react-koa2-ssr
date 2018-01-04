@@ -12,6 +12,7 @@ node_modules
 /build
 
 # misc
+launch.json
 .DS_Store
 .env.local
 .env.development.local
