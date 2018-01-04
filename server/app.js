@@ -10,17 +10,9 @@ const index = require('./routes/index')
 const users = require('./routes/users')
 var debug = require('debug')('demo:server');
 var http = require('http');
-process.env.NODE_ENV = 'development';
-process.env.BABEL_ENV = 'development';
 const app = new Koa()
 // error handler
 onerror(app)
-
-
-
-import React from './react';
-// console.log(React);
-
 // middlewares
 app.use(bodyparser({
   enableTypes: ['json', 'form', 'text']
