@@ -2,7 +2,9 @@
 基于create-react-app 和 koa2 脚手架 搭建的 react 服务端渲染项目骨架
 
 ### start
+
 git clone https://github.com/yangfan0095/react-koa2-ssr
+
 npm install 
 
 前端开发 
