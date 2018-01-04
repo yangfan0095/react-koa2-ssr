@@ -3,7 +3,7 @@ import React from 'react'
 import ReactDOMServer from 'react-dom/server'
 import { StaticRouter } from 'react-router-dom'
 import App from '../../client/src/App';
-import layout from './layout';
+import { layout } from './layout';
 /**
  * 渲染服务端路由
  */
@@ -17,7 +17,7 @@ module.exports.render = async(ctx,next) =>{
         <App/>
         </StaticRouter>
   )
-  const body =  layout(content);
+  const body =  layout(html);
   console.log(body);
    ctx.body =body;
 }

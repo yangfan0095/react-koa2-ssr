@@ -1,11 +1,4 @@
-'use strict';
-/**
- * content 上下文 data后期需要挂在的数据
- */
-//<link href="/static/css/main.css" rel="stylesheet">
-exports.layout = function (content, data) {
-    return `
-  <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -15,15 +8,13 @@ exports.layout = function (content, data) {
     <link rel="manifest" href="/manifest.json">
     <link rel="shortcut icon" href="/favicon.ico">
     <title>React App</title>
-    
+    <link href="/static/css/main.css" rel="stylesheet">
 </head>
 
 <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"> ${contetn}</div>
+    <div id="root"></div>
     <script type="text/javascript" src="/static/js/main.js"></script>
 </body>
 
 </html>
-`;
-};
