@@ -1,17 +1,17 @@
 /**
  * 返回一个基本的App
  */
-import React from 'react'
+import React from 'react';
 import {
   Route,
   Link
-} from 'react-router-dom'
-
-const Home = () => (
+} from 'react-router-dom';
+import Home from './containers/home';
+/*const Home = () => (
   <div>
     <h2>Home</h2>
   </div>
-)
+)*/
 
 const About = () => (
   <div>
