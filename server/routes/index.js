@@ -3,7 +3,7 @@ const router = require('koa-router')()
 
 router.get('/', render)
 
-router.get('/string', async(ctx, next) => {
+router.get('/bbb', async(ctx, next) => {
   ctx.body = 'koa2 string'
 })
 

@@ -39,7 +39,6 @@ app.use(async(ctx, next) => {
 
 // routes
 app.use(index.routes(), index.allowedMethods())
-app.use(users.routes(), users.allowedMethods())
 
 // error-handling
 app.on('error', (err, ctx) => {
@@ -50,7 +49,7 @@ app.on('error', (err, ctx) => {
  * Get port from environment and store in Express.
  */
 
-const port = process.env.PORT || '3003';
+const port = process.env.PORT || '3005';
 // app.set('port', port);
 
 app.listen(port, () => {
