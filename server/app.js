@@ -24,18 +24,13 @@ app.use(require('koa-static')(__dirname + '/public'))
 // app.use(views(__dirname + '/views', {
 //   extension: 'pug'
 // }))
-const viewpath = path.join(__dirname, './views');
-react(app, {
-  views: viewpath,
-  extname: 'js'
-});
 // logger
-app.use(async(ctx, next) => {
-  const start = new Date()
-  await next()
-  const ms = new Date() - start
-  console.log(`${ctx.method} ${ctx.url} - ${ms}ms`)
-})
+// app.use(async(ctx, next) => {
+//   const start = new Date()
+//   await next()
+//   const ms = new Date() - start
+//   console.log(`${ctx.method} ${ctx.url} - ${ms}ms`)
+// })
 
 // routes
 app.use(index.routes(), index.allowedMethods())
@@ -49,7 +44,7 @@ app.on('error', (err, ctx) => {
  * Get port from environment and store in Express.
  */
 
-const port = process.env.PORT || '3005';
+const port = process.env.PORT || '3008';
 // app.set('port', port);
 
 app.listen(port, () => {

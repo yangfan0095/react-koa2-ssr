@@ -11,11 +11,12 @@ export const booklist = (result) => ({
  * @param {*} param 
  */
 export const fetchBookList = (params) => {
-    return (dispatch, getState) => {
-        axios.get(api.url.booklist, {
+    return async (dispatch, getState) => {
+        await axios.get(api.url.booklist, {
             params: params
         }).then((res) => {
             dispatch(booklist(res.data.result));
+            console.log('执行actions')
         }).catch((err) => {
 
         })

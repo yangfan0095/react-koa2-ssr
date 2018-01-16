@@ -7,52 +7,21 @@ import {
   Link
 } from 'react-router-dom';
 import Home from './containers/home';
-/*const Home = () => (
-  <div>
-    <h2>Home</h2>
-  </div>
-)*/
+import {  About ,Topic,Topics } from './containers/component';
+import router from './router/route';
 
-const About = () => (
-  <div>
-    <h2>About</h2>
-  </div>
-)
+const configRoute = (router)=>{
+  return (
+    <div>
+      {
+          router.map((route) =>{
+            <Route path={ route.path } exact={route.exact?route.exact: false } component={route.component}  ></Route>
+          })
+      }
+    </div>
+  )
 
-const Topic = ({ match }) => (
-  <div>
-    <h3>{match.params.topicId}</h3>
-  </div>
-)
-
-const Topics = ({ match }) => (
-  <div>
-    <h2>Topics</h2>
-    <ul>
-      <li>
-        <Link to={`${match.url}/rendering`}>
-          Rendering with React
-        </Link>
-      </li>
-      <li>
-        <Link to={`${match.url}/components`}>
-          Components
-        </Link>
-      </li>
-      <li>
-        <Link to={`${match.url}/props-v-state`}>
-          Props v. State
-        </Link>
-      </li>
-    </ul>
-
-    <Route path={`${match.url}/:topicId`} component={Topic}/>
-    <Route exact path={match.url} render={() => (
-      <h3>Please select a topic.</h3>
-    )}/>
-  </div>
-)
-
+}
 const BasicExample = () => (
     <div>
       <ul>
@@ -61,9 +30,10 @@ const BasicExample = () => (
         <li><Link to="/topics">Topics</Link></li>
       </ul>
       <hr/>
-      <Route exact path="/" component={Home}/>
-      <Route path="/about" component={About}/>
-      <Route path="/topics" component={Topics}/>
+      {
+        configRoute(router)
+      }
+     
     </div>
 )
-export default BasicExample
+export default BasicExample;

@@ -12,7 +12,9 @@ const getCreateStore = (ctx) =>{
     const history = createMemoryHistory({ initialEntries: [path] });
     const middleware = [thunk,routerMiddleware(history)];
 	const composedEnhancers = compose(applyMiddleware(...middleware));
-    const  store = createStore(reducers, initialState, composedEnhancers);
+    const  store = createStore(reducer, initialState, composedEnhancers);
     return {history,store};
+    // const store =  createStore(reducer, initialState, composedEnhancers);
+    // return store;
 }
 export default getCreateStore;
