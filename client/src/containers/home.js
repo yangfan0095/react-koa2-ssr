@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
 import { connect } from 'react-redux';
 import { fetchBookList } from '../redux/actions/list';
-import axios from 'axios';
-import api from '../common/api';
 // import '../assets/home.less';
 
 class Home extends Component {
@@ -19,20 +17,16 @@ class Home extends Component {
 	}
   static fetch(store){
         return store.dispatch(fetchBookList({page:1,size:20}))
-
-    // return new Promise((resolve ,reject) =>{
-    //     axios.get(api.url.booklist, {
-    //                 params: params
-    //             }).then((res) =>{
-    //               resolve({booklist:res.data.result})
-    //             }).catch(()=>{
-    //               reject(null)
-    //             })
-    // })
   }
-
-  componentDidMount() {
+  componentDidCatch(error, info) {
+ 
+    // 在这里可以做异常的上报
+    console.log('发送错误'+ error,info)
+  }
+  componentWillMount() {
       const { booklist } = this.props;
+      let a = booklist;
+      console.log(booklist);
       if(booklist.length === 0){
             this.props.fetchBookList({page:this.state.page,size:this.state.size});
       }
