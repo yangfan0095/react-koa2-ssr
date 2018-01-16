@@ -34,7 +34,6 @@ module.exports.render = async(ctx,next) =>{
                 </Provider>
         )
         let initState=store.getState();
-        console.log(initState);
         const body =  layout(html,initState);
    ctx.body =body;
 }

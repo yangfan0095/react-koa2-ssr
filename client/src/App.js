@@ -25,7 +25,7 @@ const configRoute = (router)=>{
 
 } 
 const BasicExample = () => (
-    <Router>
+    <div>
       <div>
       <ul>
         <li><Link to="/">Home</Link></li>
@@ -37,6 +37,6 @@ const BasicExample = () => (
         configRoute(router)
       }
      </div>
-    </Router>
+    </div>
 )
 export default BasicExample;

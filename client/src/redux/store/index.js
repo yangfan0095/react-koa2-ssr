@@ -7,10 +7,6 @@ import thunk from 'redux-thunk';
 
 
 
-const configureStore = (initState = {}) => {
-  const store = createStore(
-    reducer,initState, applyMiddleware(thunk)
-  );
-  return store
-}
+const configureStore = (initState = {}) => createStore(reducer,initState, applyMiddleware(thunk));
+
 export default configureStore;
