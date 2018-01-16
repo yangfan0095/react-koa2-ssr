@@ -33,7 +33,6 @@ class Home extends Component {
 
   componentDidMount() {
       const { booklist } = this.props;
-      cosnole.log(booklist);
       if(booklist.length === 0){
             this.props.fetchBookList({page:this.state.page,size:this.state.size});
       }
