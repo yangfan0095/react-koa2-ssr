@@ -1,13 +1,13 @@
 import React from 'react'
 import ReactDOMServer from 'react-dom/server'
 import { StaticRouter } from 'react-router-dom'
-import App from '../../client/src/App';
+import App from '../../src/App';
 import { layout } from './layout';
 import getCreateStore from './store';
 import {Provider} from 'react-redux';
 import {ConnectedRouter,routerMiddleware} from 'react-router-redux';
 import { matchRoutes, renderRoutes } from 'react-router-config';
-import router from '../../client/src/router/route';
+import router from '../../src/router/route';
 
 /**
  * 渲染服务端路由

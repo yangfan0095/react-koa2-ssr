@@ -56,7 +56,8 @@
     "koa-router": "^7.1.1",
     "koa-static": "^3.0.0",
     "koa-views": "^5.2.1",
-    "pug": "^2.0.0-rc.1"
+    "pug": "^2.0.0-rc.1",
+    "react-router-config": "^1.0.0-beta.4"
   },
   "devDependencies": {
     "babel-polyfill": "^6.26.0",

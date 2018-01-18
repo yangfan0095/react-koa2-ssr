@@ -1,5 +1,5 @@
 import { createStore,applyMiddleware,compose} from 'redux';
-import reducer from '../../client/src/redux/reducers';
+import reducer from '../../src/redux/reducers';
 import { routerMiddleware } from 'react-router-redux';
 import thunk from 'redux-thunk';
 
@@ -14,7 +14,5 @@ const getCreateStore = (ctx) =>{
 	const composedEnhancers = compose(applyMiddleware(...middleware));
     const  store = createStore(reducer, initialState, composedEnhancers);
     return {history,store};
-    // const store =  createStore(reducer, initialState, composedEnhancers);
-    // return store;
 }
 export default getCreateStore;
