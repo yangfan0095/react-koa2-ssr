@@ -24,7 +24,11 @@ npm run server
 感谢 watch 欢迎star 交流
 
 
-##  如何快速搭建一个react同构项目
+##  基于create-react-app 和 koa2 搭建一个react服务端渲染项目总结 
+
+本项目github地址 [https://github.com/yangfan0095/react-koa2-ssr](https://github.com/yangfan0095/react-koa2-ssr)
+
+所用到技术栈 react16.x + react-router4.x + koa2.x
 
 #### 前言
  前面做了一个简单的古文网，但是项目是使用React SPA 渲染的，不利于SEO，便有了服务端渲染这个需求。后面就想写个demo把整个过程总结一下，同时也加深自己对其的理解，期间由于工作，过程是断断续续 。总之后来就有了这个项目吧。关于服务端渲染的优缺点，[vue服务端渲染官方文档](https://ssr.vuejs.org/zh/ )讲的最清楚，。 对于大部分场景最主要还是两点 1是提高首屏加载速度 2 是方便SEO.为了快速构建开发环境，于是客户端直接使用create-react-app 构建了一个客户端开发环境 ，在同级目录使用koa2.x项目脚手架生成了一个简单的koa2.x项目，作为服务端开发环境。整个项目便是以此作为基点进行开发的，目前也只是完成了最基本的需求， 还有很多Bug 和可以优化的地方， 欢迎交流。
@@ -221,6 +225,38 @@ export const fetchBookList = (params) => {
 
 到这一步我们已经可以实现刷新页面异步数据服务端处理，不刷新页面前端处理，一个基本的同构方案主体就出来了，剩下的就是一些优化项和一些项目定制性的东西了。
 
+#####  服务端页面分发
+对于服务器而言不仅会收到前端路由的请求还会收到各种其他静态资源的请求 `import {matchPath} from 'react-router-dom';` 我们这里使用react-router-dom包里面的 matchPath API 来匹配当前请求路由是否与我们客户端的路由配置相同如果不同我们默认为请求的是静态资源或其他。如果不匹配当前路由我们直接执行 next() 进入到下一个中间件 。因为我们这个项目实际上还是是一个前后端分离的项目 只不过增加了服务端渲染的方式而已。 如果服务端还要处理其他请求，那么其实我们也可以在通过服务端 增加其他路由 ，通过映射来匹配对应的渲染页面和API。
+
+
+#### 其他
+写这个demo看了很多的github项目以及相关文章，这些资料对本项目有很大的启发
+
+[Vue.js 服务器端渲染指南](https://ssr.vuejs.org/zh/)
+
+[react-server](https://github.com/redfin/react-server)
+
+[beidou](https://github.com/alibaba/beidou)
+
+[react-ssr-optimization](https://github.com/walmartlabs/react-ssr-optimization)
+
+[React-universal-ssr](https://github.com/wd2010/React-universal-ssr)
+
+[fairy](https://github.com/aemoe/fairy)
+
+[D2 - 打造高可靠与高性能的React同构解决方案](https://zhuanlan.zhihu.com/p/32124393)
+
+[Egg + React 服务端渲染开发指南](https://zhuanlan.zhihu.com/p/30681341)
+
+[服务端渲染与 Universal React App](https://zhuanlan.zhihu.com/p/30580569)
+
+[React同构直出优化总结](https://github.com/joeyguo/blog/issues/9)
+
+[React移动web极致优化](https://github.com/lcxfs1991/blog/issues/8)
+
+[https://github.com/joeyguo](https://github.com/joeyguo)
+...
+
 #### 总结
 我们知道服务端渲染的
 优势在于可以极快的首屏优化 ，支持SEO，与传统的SPA相比多了一种数据的处理方式。 
@@ -228,7 +264,7 @@ export const fetchBookList = (params) => {
 这里只是浅尝辄止，并没有做相关的处理，估计后面有时间会做一些优化欢迎大家关注。
 
 
-以上。
+以上です
 
 
 
