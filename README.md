@@ -24,18 +24,18 @@ npm run server
 感谢 watch 欢迎star 交流
 
 
-##  基于create-react-app 和 koa2 搭建一个react服务端渲染项目总结 
+##  基于create-react-app 和 koa2 快速搭建react同构渲染项目总结 
 
 本项目github地址 [https://github.com/yangfan0095/react-koa2-ssr](https://github.com/yangfan0095/react-koa2-ssr)
 
 所用到技术栈 react16.x + react-router4.x + koa2.x
 
 #### 前言
- 前面做了一个简单的古文网，但是项目是使用React SPA 渲染的，不利于SEO，便有了服务端渲染这个需求。后面就想写个demo把整个过程总结一下，同时也加深自己对其的理解，期间由于工作，过程是断断续续 。总之后来就有了这个项目吧。关于服务端渲染的优缺点，[vue服务端渲染官方文档](https://ssr.vuejs.org/zh/ )讲的最清楚，。 对于大部分场景最主要还是两点 1是提高首屏加载速度 2 是方便SEO.为了快速构建开发环境，于是客户端直接使用create-react-app 构建了一个客户端开发环境 ，在同级目录使用koa2.x项目脚手架生成了一个简单的koa2.x项目，作为服务端开发环境。整个项目便是以此作为基点进行开发的，目前也只是完成了最基本的需求， 还有很多Bug 和可以优化的地方， 欢迎交流。
+ 前段时间做了一个简单的古文网 ，但是项目是使用React SPA 渲染的，不利于SEO，便有了服务端渲染这个需求。后面就想写个demo把整个过程总结一下，同时也加深自己对其的理解，期间由于工作，过程是断断续续 。总之后来就有了这个项目吧。关于服务端渲染的优缺点，[vue服务端渲染官方文档](https://ssr.vuejs.org/zh/ )讲的最清楚。 对于大部分场景最主要还是两点 提高首屏加载速度 和方便SEO.为了快速构建开发环境，这里直接使用create-react-app 和koa2.x生成一个基础项目 。整个项目便是以此作为基点进行开发的，目前也只是完成了最基本的需求， 还有很多Bug 和可以优化的地方， 欢迎交流。
 
 ### 服务端渲染最基本的理论知识梳理
 首先前后端分别使用create-react-app 和koa2的脚手架快速生成， 然后再将两个项目合并到一起。这样我们省去了webpack的一些繁琐配置 ，同时服务端使用了babel编译。看这个之前 默认已经掌握webpack 和 koa2.x,babel的相关知识。
-我们直切重要的步骤吧。我觉得搭建一个react-ssr环境主要只有两点 一个是前后端路由的同构和 异步数据的同构因此这个简单的demo主要从这两方面入手。
+我们直切重要的步骤吧。我觉得搭建一个react-ssr环境主要只有两点 一个是前后端路由的同构和 异步数据的同构。因此这个简单的demo主要从这两方面入手。
 #### react 服务端渲染梳理
 * react 服务端渲染的条件
 * react-router4.x 与koa2.x 路由实现同构
@@ -112,7 +112,8 @@ ReactDOM.render((
 到这一步我们已经可以实现页面刷新 服务端和客户端保持一致了。
 
 #### Redux 服务端同构
-首先看一下官方文档的介绍吧 http://cn.redux.js.org/docs/recipes/ServerRendering.html.
+首先下官方文档做了简单的介绍介绍[http://cn.redux.js.org/docs/recipes/ServerRendering.html.](http://cn.redux.js.org/docs/recipes/ServerRendering.html.) 
+
 其处理步骤如下：
 * 1 我们根据对应的服务端请求API 得到对应的异步方法获取到异步数据。
 * 2 使用异步数据生成一个初始化的store `const store = createStore(counterApp, preloadedState)`,
@@ -257,11 +258,11 @@ export const fetchBookList = (params) => {
 [https://github.com/joeyguo](https://github.com/joeyguo)
 ...
 
+
 #### 总结
 我们知道服务端渲染的
 优势在于可以极快的首屏优化 ，支持SEO，与传统的SPA相比多了一种数据的处理方式。 
-缺点也非常明显，服务端渲染相当于是把客户端的处理流程部分移植到了服务端，这样就增加了服务端的负载。因此要做一个好的SSR方案，缓存是必不可少的。
-这里只是浅尝辄止，并没有做相关的处理，估计后面有时间会做一些优化欢迎大家关注。
+缺点也非常明显，服务端渲染相当于是把客户端的处理流程部分移植到了服务端，这样就增加了服务端的负载。因此要做一个好的SSR方案，缓存是必不可少的。与此同时工程化方面也是有很多值得优化的地方。这里只是浅尝辄止，并没有做相关的处理，估计后面有时间会做一些优化欢迎大家关注。
 
 
 以上です
