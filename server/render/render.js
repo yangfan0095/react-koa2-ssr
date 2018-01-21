@@ -8,6 +8,20 @@ import {Provider} from 'react-redux';
 import {ConnectedRouter,routerMiddleware} from 'react-router-redux';
 import { matchRoutes, renderRoutes } from 'react-router-config';
 import router from '../../src/router/route';
+import {matchPath} from 'react-router-dom';
+
+/**
+ * 匹配当前请求url是否跟客户端路由一致 不一致则执行next
+ * @param {*} routesArray 
+ * @param {*} url 
+ */
+const getMatch=(routesArray, url)=>{
+  return routesArray.some(router=>matchPath(url,{
+    path: router.path,
+    exact: router.exact,
+  }))
+}
+
 
 /**
  * 渲染服务端路由
@@ -22,19 +36,24 @@ module.exports.render = async(ctx,next) =>{
     await Promise.all(promises).catch((err)=>{
         console.log(err);
     }); 
-
-    const html = ReactDOMServer.renderToString(
-                <Provider store={store}>
-                            <StaticRouter
-                            location={ctx.url}
-                            context={{}}>
-                                <App/>
-                            </StaticRouter>
-                </Provider>
-        )
+    let isMatch=getMatch(router,ctx.req.url);
+     if(!isMatch){
+        await next();
+     }else{
+        const html = ReactDOMServer.renderToString(
+                        <Provider store={store}>
+                                    <StaticRouter
+                                    location={ctx.url}
+                                    context={{}}>
+                                        <App/>
+                                    </StaticRouter>
+                        </Provider>
+                )
         let initState=store.getState();
         const body =  layout(html,initState);
-   ctx.body =body;
+        ctx.body =body;
+     }
+  
 }
 
 

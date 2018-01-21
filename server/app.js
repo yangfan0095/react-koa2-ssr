@@ -8,8 +8,9 @@ const logger = require('koa-logger')
 const react = require('koa-react-view');
 const index = require('./routes/index')
 const users = require('./routes/users')
-var debug = require('debug')('demo:server');
-var http = require('http');
+const debug = require('debug')('demo:server');
+const http = require('http');
+const staticCache  = require("koa-static-cache");
 const app = new Koa()
 // error handler
 onerror(app)
@@ -21,20 +22,12 @@ app.use(json())
 app.use(logger())
 app.use(require('koa-static')(__dirname + '../build'))
 
-// app.use(views(__dirname + '/views', {
-//   extension: 'pug'
-// }))
-// logger
-// app.use(async(ctx, next) => {
-//   const start = new Date()
-//   await next()
-//   const ms = new Date() - start
-//   console.log(`${ctx.method} ${ctx.url} - ${ms}ms`)
-// })
-
 // routes
 app.use(index.routes(), index.allowedMethods())
-
+app.use(staticCache (path.resolve(__dirname,'../build'),{
+  maxAge: 365 * 24 * 60 * 60,
+  gzip:true
+}));
 // error-handling
 app.on('error', (err, ctx) => {
   console.error('server error', err, ctx)
