@@ -11,7 +11,7 @@ import router from '../../src/router/route';
 import {matchPath} from 'react-router-dom';
 
 /**
- * 匹配当前请求url是否跟客户端路由一致 不一致则执行next
+ * 匹配当前请求url是否跟客户端路由一致 不一致则执行next 进行静态资源处理等
  * @param {*} routesArray 
  * @param {*} url 
  */
