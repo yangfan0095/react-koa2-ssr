@@ -11,6 +11,7 @@ import Home from './containers/home';
 import {  About ,Topic,Topics } from './containers/component';
 import  {ConnectedRouter}  from 'react-router-redux';
 import router from './router/route';
+import './assets/main.less';
 
 const configRoute = (router)=>{
   return (
@@ -25,7 +26,7 @@ const configRoute = (router)=>{
 
 } 
 const BasicExample = () => (
-    <div>
+    <div className="app-container">
       <div>
       <ul>
         <li><Link to="/">Home</Link></li>

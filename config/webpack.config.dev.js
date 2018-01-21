@@ -9,6 +9,7 @@ const InterpolateHtmlPlugin = require('react-dev-utils/InterpolateHtmlPlugin');
 const WatchMissingNodeModulesPlugin = require('react-dev-utils/WatchMissingNodeModulesPlugin');
 const eslintFormatter = require('react-dev-utils/eslintFormatter');
 const ModuleScopePlugin = require('react-dev-utils/ModuleScopePlugin');
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const getClientEnvironment = require('./env');
 const paths = require('./paths');
 
@@ -21,7 +22,10 @@ const publicPath = '/';
 const publicUrl = '';
 // Get environment variables to inject into our app.
 const env = getClientEnvironment(publicUrl);
-
+const extractLess = new ExtractTextPlugin({
+  filename: "[name].[contenthash].css",
+  // disable: process.env.NODE_ENV === "development"
+});
 // This is the development configuration.
 // It is focused on developer experience and fast rebuilds.
 // The production configuration is different and lives in a separate file.
@@ -188,6 +192,18 @@ module.exports = {
               },
             ],
           },
+           {
+            test: /\.less$/,
+            use: extractLess.extract({
+              use: [{
+                loader: require.resolve('css-loader')
+              }, {
+                loader: require.resolve('less-loader')
+              }],
+              // use style-loader in development
+              fallback: require.resolve('style-loader')
+            })
+          },
           // "file" loader makes sure those assets get served by WebpackDevServer.
           // When you `import` an asset, you get its (virtual) filename.
           // In production, they would get copied to the `build` folder.
@@ -211,6 +227,7 @@ module.exports = {
     ],
   },
   plugins: [
+      extractLess,
     // Makes some environment variables available in index.html.
     // The public URL is available as %PUBLIC_URL% in index.html, e.g.:
     // <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
