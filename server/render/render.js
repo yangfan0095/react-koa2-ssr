@@ -13,7 +13,6 @@ import router from '../../src/router/route';
  * 渲染服务端路由
  */
 module.exports.render = async(ctx,next) =>{
-    console.log(' render --- func ---:' + ctx.req.url)
     const { store ,history} = getCreateStore(ctx);
     const branch = matchRoutes(router, ctx.req.url);
     const promises = branch.map(({route}) => {

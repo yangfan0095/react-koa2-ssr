@@ -16,7 +16,6 @@ export const fetchBookList = (params) => {
             params: params
         }).then((res) => {
             dispatch(booklist(res.data.result));
-            console.log('执行actions')
         }).catch((err) => {
 
         })

@@ -75,6 +75,7 @@
   "scripts": {
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
+    "server": "node server/index.js",
     "test": "node scripts/test.js --env=jsdom"
   },
   "jest": {

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
 import { connect } from 'react-redux';
 import { fetchBookList } from '../redux/actions/list';
-// import '../assets/home.less';
+import '../assets/home.less';
 
 class Home extends Component {
   constructor(){
