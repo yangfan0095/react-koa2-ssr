@@ -1,3 +1,4 @@
+### 最近库被别人删了 还没时间搞。 初始化请求可能没数据。 可以自己写个json放到里面去做初始化
 ### react-koa2-ssr 
 基于create-react-app 和 koa2 脚手架 搭建的 react 服务端渲染项目骨架
 
