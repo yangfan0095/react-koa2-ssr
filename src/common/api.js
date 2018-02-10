@@ -1,9 +1,7 @@
  /**
   * 配置全局api
   */
- const site = '47.52.115.169';
- const base = `http://${site}:8080`;
-//   const base = 'http://localhost:8080';
+ const base = 'http://api.guwennet.com';
  export default {
      url: {
          book: `${base}/book`,
