@@ -27,6 +27,7 @@ const configRoute = (router)=>{
 } 
 const BasicExample = () => (
     <div className="app-container">
+      <img src={ require("./assets/img/icon.png")} />
       <div>
       <ul>
         <li><Link to="/">Home</Link></li>
