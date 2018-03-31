@@ -12,6 +12,7 @@ import {  About ,Topic,Topics } from './containers/component';
 import  {ConnectedRouter}  from 'react-router-redux';
 import router from './router/route';
 import './assets/main.less';
+import imageSrc from './assets/img/icon.png';
 
 const configRoute = (router)=>{
   return (
@@ -27,7 +28,7 @@ const configRoute = (router)=>{
 } 
 const BasicExample = () => (
     <div className="app-container">
-      <img src={ require("./assets/img/icon.png")} />
+      <img src={ imageSrc} />
       <div>
       <ul>
         <li><Link to="/">Home</Link></li>
