@@ -20,10 +20,9 @@ app.use(bodyparser({
 }))
 app.use(json())
 app.use(logger())
-app.use(require('koa-static')(__dirname + '../build'))
-
 // routes
 app.use(index.routes(), index.allowedMethods())
+app.use(require('koa-static')(__dirname + '../build'))
 app.use(staticCache (path.resolve(__dirname,'../build'),{
   maxAge: 365 * 24 * 60 * 60,
   gzip:true
